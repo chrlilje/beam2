@@ -9,7 +9,7 @@ let force = {};
 let mouseIsDragging = false;
 
 function setup() {
-  createCanvas(1500, 800);
+  createCanvas(1100, 750);
 
 
   // Add joints to the joint-object
@@ -25,10 +25,10 @@ function setup() {
 
 
    // Add beams to the beam-object
-   beam.AB = new Beam(joint.A, joint.B, 8, "yellow", "AB");
-   beam.CD = new Beam(joint.C, joint.D, 8, "yellow", "CD");
-   beam.AF = new Beam(joint.A, joint.F, 16, "blue", "AF");
-   beam.DG = new Beam(joint.D, joint.G, 16, "blue", "DG");
+   beam.AB = new Beam(joint.A, joint.B, 12, "SlateGray ", "AB");
+   beam.CD = new Beam(joint.C, joint.D, 12, "SlateGray ", "CD");
+   beam.AF = new Beam(joint.A, joint.F, 22, "Navy", "AF");
+   beam.DG = new Beam(joint.D, joint.G, 22, "Navy", "DG");
 //    beam.CB = new Beam(joint.C, joint.B, 2, "red", "CB");
   colorMode(HSB);
 
@@ -42,7 +42,7 @@ function setup() {
 }
 
 function draw() {
-  background("grey");
+  background("LightSteelBlue");
   cursor(ARROW); // Set the cursor to an arrow. 
 
   for(let key in beam){
@@ -55,6 +55,7 @@ function draw() {
 
   drawJoints();
 
+  listForces();
 
   // Update the force arrows length based on the equations
 
@@ -117,4 +118,46 @@ function updateJointX(j1, j2, b){
 function updateJointMiddle(j1, j2, j3){
   j1.x = (j2.x + j3.x) / 2;
   j1.y = (j2.y + j3.y) / 2;
+}
+
+/** List forces from force Arrows
+ * 
+ */
+function listForces(){
+
+  push();
+  translate(width-360,50)
+  textSize(26);
+  strokeWeight(1);
+  textFont('Lucida Console, monospace');
+  fill(0);
+  // Set font to normal not bold
+  textStyle(NORMAL);
+  let y = 0;
+  for(let key in force){
+    stroke(0);
+    strokeWeight(1);
+    textAlign(LEFT);
+    fill("black")
+    text(key , 0, y);
+    text(":" , 40, y);
+    textAlign(RIGHT);
+    text(force[key].length.toFixed(0) + "  N", 150, y);
+
+    strokeWeight(3);
+    stroke(force[key].color);
+    line(160, y-10, 160+ abs(force[key].length), y-10);
+
+    // IF the line is spilling of the side of the canvas, make a circle that grows with the length
+    if(abs(force[key].length) > 200){
+      strokeWeight(1);
+      fill(force[key].color);
+      let biggersize = map(abs(force[key].length)-200, 0, 1000, 5, 30);
+      circle(360, y-10, biggersize);
+    }
+
+    y += 40;
+    
+  }
+  pop();
 }

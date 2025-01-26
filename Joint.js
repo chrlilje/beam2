@@ -19,9 +19,9 @@ class Joint {
         fill(0);
         stroke(0);
         strokeWeight(1);
-        ellipse(this.x, this.y+5, 25, 25);
+        ellipse(this.x, this.y, 25, 25);
         fill("white");
-        text(this.name, this.x-5, this.y+8);
+        text(this.name, this.x-4, this.y+4);
         if (this.draggable) {
             this.drag();
         }

@@ -26,6 +26,7 @@ class ForceArrow {
     if (this.length < 0) {
       rotate(180);
     }
+    translate(0, -12);
     rect(-this.w / 2, -10, this.w, -abs(this.length));
     triangle(0, 0, 15, -15, -15, -15);
 
