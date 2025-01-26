@@ -20,7 +20,7 @@ function setup() {
   joint.E = new Joint(250, 500, "E");
   joint.F = new Joint(600, 700, "F");
   joint.G = new Joint(600, 300, "G");
-  joint.H = new Joint(250, 300, "H");
+  joint.H = new Joint(250, 300, "H","rollerY", true);
   updateJointMiddle(joint.H, joint.D, joint.G);
 
 
@@ -33,7 +33,7 @@ function setup() {
   colorMode(HSB);
 
   // Add forces to the force-object
-  force.H = new ForceArrow(joint.H, 10, 150, "green", "0",true);
+  force.H = new ForceArrow(joint.H, 10, 150, "green", "0", true);
   force.D = new ForceArrow(joint.D, 10, 150, "brown", "0");
   force.B = new ForceArrow(joint.B, 10, 150, "brown", "0");
 

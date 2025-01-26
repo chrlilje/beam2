@@ -23,6 +23,11 @@ class Joint {
         fill("white");
         text(this.name, this.x-4, this.y+4);
         if (this.draggable) {
+            // Mark the joint as draggable by drawing a small circle
+            strokeWeight(2);
+            noFill();
+            stroke("white");
+            ellipse(this.x, this.y, 25, 25);
             this.drag();
         }
     }
