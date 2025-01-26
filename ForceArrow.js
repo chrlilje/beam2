@@ -11,6 +11,7 @@ class ForceArrow {
     this.angle = angle;
     this.draggable = draggable;
     this.isBeingDragged = false;
+    this.displayInList = true;
   }
   draw() {
     // Draw a triangle

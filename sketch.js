@@ -39,6 +39,17 @@ function setup() {
 
   force.Ex = new ForceArrow(joint.E, 10, 150, "red", "90");
   force.Ey = new ForceArrow(joint.E, 10, 150, "red", "0");
+
+  force.A = new ForceArrow(joint.A, 10, 150, "brown", "0");
+  force.C = new ForceArrow(joint.C, 10, 150, "brown", "0");
+
+  force.E2x = new ForceArrow(joint.E, 10, 150, "gray", "90");
+  force.E2y = new ForceArrow(joint.E, 10, 150, "gray", "0");
+  force.A.displayInList = false;
+  force.C.displayInList = false;
+  force.E2x.displayInList = false;
+  force.E2y.displayInList = false;
+
 }
 
 function draw() {
@@ -71,6 +82,11 @@ let h = joint.A.y - joint.D.y;
 let x = joint.H.x - joint.D.x;
 force.Ex.length = force.H.length *(L/h);
 force.Ey.length = (2 * x * force.H.length) / L - force.H.length;
+
+force.A.length = -force.D.length;
+force.C.length = -force.B.length;
+force.E2x.length = -force.Ex.length;
+force.E2y.length = -force.Ey.length;
 
   // Update the position of joint C based on the position of joint D
   updateJoint(joint.D, joint.C, beam.CD);
@@ -135,29 +151,33 @@ function listForces(){
   textStyle(NORMAL);
   let y = 0;
   for(let key in force){
-    stroke(0);
-    strokeWeight(1);
-    textAlign(LEFT);
-    fill("black")
-    text(key , 0, y);
-    text(":" , 40, y);
-    textAlign(RIGHT);
-    text(force[key].length.toFixed(0) + "  N", 150, y);
-
-    strokeWeight(3);
-    stroke(force[key].color);
-    line(160, y-10, 160+ abs(force[key].length), y-10);
-
-    // IF the line is spilling of the side of the canvas, make a circle that grows with the length
-    if(abs(force[key].length) > 200){
+    if(force[key].displayInList == true){
+      stroke(0);
       strokeWeight(1);
-      fill(force[key].color);
-      let biggersize = map(abs(force[key].length)-200, 0, 1000, 5, 30);
-      circle(360, y-10, biggersize);
+      textAlign(LEFT);
+      fill("black")
+      text(key , 0, y);
+      text(":" , 40, y);
+      textAlign(RIGHT);
+      let forceValue = (force[key].length*3.33).toFixed(0)*10 + "  N"
+      text(forceValue, 150, y);
+  
+      strokeWeight(3);
+      stroke(force[key].color);
+      line(160, y-10, 160+ abs(force[key].length), y-10);
+  
+      // IF the line is spilling of the side of the canvas, make a circle that grows with the length
+      if(abs(force[key].length) > 200){
+        strokeWeight(1);
+        fill(force[key].color);
+        let biggersize = map(abs(force[key].length)-200, 0, 1000, 5, 30);
+        circle(360, y-10, biggersize);
+      }
+  
+      y += 40;
+      
+  
     }
-
-    y += 40;
-    
   }
   pop();
 }
