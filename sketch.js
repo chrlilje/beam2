@@ -40,8 +40,8 @@ function setup() {
   force.Ex = new ForceArrow(joint.E, 10, 150, "red", "90");
   force.Ey = new ForceArrow(joint.E, 10, 150, "red", "0");
 
-  force.A = new ForceArrow(joint.A, 10, 150, "brown", "0");
-  force.C = new ForceArrow(joint.C, 10, 150, "brown", "0");
+  force.A = new ForceArrow(joint.A, 10, 150, "sandybrown", "0");
+  force.C = new ForceArrow(joint.C, 10, 150, "sandybrown", "0");
 
   force.E2x = new ForceArrow(joint.E, 10, 150, "gray", "90");
   force.E2y = new ForceArrow(joint.E, 10, 150, "gray", "0");
