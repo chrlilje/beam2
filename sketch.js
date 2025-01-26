@@ -25,8 +25,8 @@ function setup() {
 
 
    // Add beams to the beam-object
-   beam.AB = new Beam(joint.A, joint.B, 12, "SlateGray ", "AB");
-   beam.CD = new Beam(joint.C, joint.D, 12, "SlateGray ", "CD");
+   beam.AB = new Beam(joint.A, joint.B, 12, "goldenrod", "AB");
+   beam.CD = new Beam(joint.C, joint.D, 12, "goldenrod", "CD");
    beam.AF = new Beam(joint.A, joint.F, 22, "Navy", "AF");
    beam.DG = new Beam(joint.D, joint.G, 22, "Navy", "DG");
 //    beam.CB = new Beam(joint.C, joint.B, 2, "red", "CB");
